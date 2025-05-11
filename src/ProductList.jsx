@@ -4,6 +4,7 @@ import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
+    const [notification, setNotification] = useState(''); // Notification state
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
@@ -264,6 +265,10 @@ function ProductList({ onHomeClick }) {
         setAddedToCart((prevState) => ({
             ...prevState, [plant.name]: true,
         }));
+        setNotification(`${plant.name} added to cart!`);
+        setTimeout(() => {
+              setNotification('');
+        }, 3000);
     };
 
     const totalItems = () => {
